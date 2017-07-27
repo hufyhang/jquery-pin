@@ -1,6 +1,6 @@
 import '../style/main.styl';
 
-$.fn.PIN = function (callback) {
+$.fn.PIN = function (callback: (code: string) => void) {
   (<JQueryBasic.JQueryObject>this).each(function () {
     const $this: JQueryBasic.JQueryObject = $(this);
     const $mobileInput = $this.find('.pincode-mobile-input');
