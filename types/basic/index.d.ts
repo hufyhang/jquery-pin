@@ -60,9 +60,3 @@ declare namespace JQueryBasic {
     attr(name: string, value: string): JQueryObject;
   }
 }
-
-declare namespace JQueryBasic {
-  interface JQueryObject {
-    PIN(callback: (code: string) => void): JQueryBasic.JQueryObject;
-  }
-}
