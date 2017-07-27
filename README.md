@@ -4,7 +4,7 @@ A JQuery PIN plugin written in Typescript.
 
 ## Build
 
-To build jquery-pin, run `webpack --progress` under jquery-pin's directory.
+To build jquery-pin, run `npm run build`.
 
 The compiled output will be in `dist` directory.
 
