@@ -2,12 +2,12 @@ declare function $(selector: string): JQueryBasic.JQueryObject;
 declare function $(element: HTMLElement): JQueryBasic.JQueryObject;
 declare function $(callback: () => any): void;
 
-interface PlainObject {
+interface JQueryFnObject {
   [key: string]: any;
 }
 
 declare namespace $ {
-  export let fn: PlainObject;
+  export let fn: JQueryFnObject;
 }
 
 declare namespace JQueryBasic {
