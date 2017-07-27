@@ -1,7 +1,8 @@
 const path = require('path');
 module.exports = {
   entry: {
-    main: ['./src/ts/index.ts']
+    pin: ['./src/ts/index.ts'],
+    test: ['./src/ts/test.ts']
   },
 
   module: {
@@ -11,6 +12,9 @@ module.exports = {
     }, {
       test: /\.ts$/,
       loaders: ['babel-loader', 'ts-loader']
+    }, {
+      test: /\.styl$/,
+      loaders: ['style-loader', 'css-loader', 'stylus-loader']
     }]
   },
 

@@ -1,0 +1,52 @@
+@import "./color"
+
+.pin-code
+  .pincode-mobile-input
+    padding 5px 18px
+    height 36px
+    border 1px solid $color-grey-5
+    broder-radius 3px
+
+    font-size 14px
+    font-weight 300
+    border-radius 3px
+
+    &:focus
+    &:active
+      border 1px solid $color-grey-4
+
+    @media (min-width 768px)
+      display none
+
+  .pincode-inputs-container
+    display none
+    @media (min-width 768px)
+      display block
+
+    .pincode-input
+      display inline-block
+
+      width 30px
+      height 30px
+      border 1px solid $color-grey-5
+      border-radius 3px
+      background-color $color-grey-6
+
+      text-align center
+
+      &.active
+        background-color #fff
+        &:focus
+        &:active
+          border 1px solid $color-grey-4
+
+      &:not(:last-of-type)
+        margin-right 12px
+
+html:not(.touch)
+  .pin-code
+    .pincode-mobile-input
+    .pincode-input
+      &.active
+        &:hover
+          border 1px solid $color-grey-4
