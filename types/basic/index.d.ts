@@ -1,5 +1,5 @@
 declare function $(selector: string): JQueryBasic.JQueryObject;
-declare function $(element: HTMLElement): JQueryBasic.JQueryObject;
+declare function $(element: Element): JQueryBasic.JQueryObject;
 declare function $(callback: () => any): void;
 
 interface JQueryFnObject {
@@ -57,6 +57,8 @@ declare namespace JQueryBasic {
     focus(): JQueryObject;
 
     attr(name: string): string;
-    attr(name: string, value: string): JQueryObject;
+    attr(name: string, value: string|number|boolean): JQueryObject;
+
+    append(content: string|Element|JQueryObject): JQueryObject;
   }
 }

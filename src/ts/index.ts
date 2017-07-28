@@ -1,12 +1,34 @@
 import '../style/main.styl';
 
-$.fn.PIN = function (callback: (code: string) => void) {
+$.fn.PIN = function (option: PINOption) {
+  const PIN_DIGITS = option.digit || 3;
+
   (<JQueryBasic.JQueryObject>this).each(function () {
     const $this: JQueryBasic.JQueryObject = $(this);
+    const fragment = document.createDocumentFragment();
+
+    const mobileInput = document.createElement('input');
+    mobileInput.className = 'pincode-mobile-input';
+    mobileInput.setAttribute('type', option.type || 'text');
+    mobileInput.setAttribute('placeholder', option.placeholder || '');
+    fragment.appendChild(mobileInput);
+
+    const inputContainer = document.createElement('div');
+    inputContainer.className = 'pincode-inputs-container';
+    for (let index = 0; index !== PIN_DIGITS; ++index) {
+      let inputNode = document.createElement('input');
+      inputNode.className = 'pincode-input';
+      inputNode.setAttribute('data-digit', `${ index + 1 }`);
+      inputContainer.appendChild(inputNode);
+    }
+    fragment.appendChild(inputContainer);
+
+    this.appendChild(fragment);
+
     const $mobileInput = $this.find('.pincode-mobile-input');
     const $inputsContainer = $this.find('.pincode-inputs-container');
     const $inputs = $inputsContainer.find('.pincode-input');
-    const PIN_DIGITS = $inputs.length;
+
 
     $mobileInput
       .on('keypress', function (evt) {
@@ -23,8 +45,8 @@ $.fn.PIN = function (callback: (code: string) => void) {
           return false;
         }
 
-        if (code.length === PIN_DIGITS && typeof callback === 'function') {
-          callback(code);
+        if (code.length === PIN_DIGITS && typeof option.callback === 'function') {
+          option.callback(code);
         }
       });
 
@@ -87,8 +109,8 @@ $.fn.PIN = function (callback: (code: string) => void) {
             $($inputs.get(index)).focus().addClass('active');
           }
 
-          if (code.length === PIN_DIGITS && typeof callback === 'function') {
-            callback(code);
+          if (code.length === PIN_DIGITS && typeof option.callback === 'function') {
+            option.callback(code);
           } else if (code.length < PIN_DIGITS) {
             $inputs.removeClass('active');
             $($inputs.get(code.length)).focus().addClass('active');

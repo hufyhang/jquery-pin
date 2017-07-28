@@ -1,3 +1,10 @@
+declare interface PINOption {
+  callback: (code: string) => void;
+  digit: number;
+  placeholder?: string;
+  type?: string;
+}
+
 declare namespace JQueryBasic {
   interface JQueryObject {
     /**
@@ -5,10 +12,10 @@ declare namespace JQueryBasic {
      * @param {function} callback - The callback function to be invoked on PIN entered.
      * @return Jquery object.
      */
-    PIN(callback: (code: string) => void): JQueryObject;
+    PIN(option: PINOption): JQueryObject;
 }
 }
 
 interface JQueryFnObject {
-  PIN: (callback: (code: string) => void) => void;
+  PIN: (option: PINOption) => void;
 }
